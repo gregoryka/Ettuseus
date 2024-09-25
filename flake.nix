@@ -14,11 +14,13 @@
     devshell.url = "github:numtide/devshell";
   };
 
-  outputs = {flake-parts, ...}@inputs:
-  flake-parts.lib.mkFlake {inherit inputs;} {
-    imports = [
-       ./devshell.nix
+  outputs =
+    { flake-parts, ... }@inputs:
+    flake-parts.lib.mkFlake { inherit inputs; } {
+      imports = [
+        ./devshell.nix
+        ./formatter.nix
       ];
-    systems = ["x86_64-linux"];
-  };
+      systems = [ "x86_64-linux" ];
+    };
 }

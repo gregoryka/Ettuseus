@@ -2,8 +2,8 @@
 
 {
   imports = [
-          inputs.devshell.flakeModule
-        ];
+    inputs.devshell.flakeModule
+  ];
   perSystem =
     {
       pkgs,
@@ -13,6 +13,7 @@
       devshells.default = {
         packages = with pkgs; [
           uhd.dev
+          meson
         ];
       };
     };
