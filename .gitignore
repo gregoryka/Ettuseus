@@ -33,3 +33,6 @@
 
 # direnv
 .direnv
+
+# clangd
+.cache/clangd

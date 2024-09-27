@@ -8,6 +8,7 @@
       projectRootFile = "flake.nix";
 
       programs = {
+        clang-format.enable = true;
         deadnix.enable = true;
         meson.enable = true;
         nixfmt.enable = true;

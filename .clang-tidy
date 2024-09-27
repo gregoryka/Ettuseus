@@ -1,0 +1,2 @@
+Checks:
+  'bugprone-*,clang-diagnostic-*,clang-analyzer-*,concurrency-*,cppcoreguidelines-*,modernize-*,performance-*,portability-*,readability-*,-bugprone-easily-swappable-parameters'
