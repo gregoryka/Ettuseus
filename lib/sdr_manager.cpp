@@ -4,7 +4,6 @@
 namespace Ettuseus {
 
     SDR_manager::SDR_manager(const std::string& args)
-    : _dev(SoapySDR::Device::make(args))
     {
     }
 

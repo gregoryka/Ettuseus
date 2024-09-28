@@ -1,6 +1,8 @@
 #include <uhd/usrp/multi_usrp.hpp>
 
 
+namespace Ettuseus {
+
 class SDR_manager {
 public:
 

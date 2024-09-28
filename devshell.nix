@@ -1,9 +1,6 @@
 { inputs, ... }:
 
 {
-  imports = [
-    inputs.devshell.flakeModule
-  ];
   perSystem =
     {
       self',
@@ -11,9 +8,9 @@
       ...
     }:
     {
-      devshells.default = {
+      devShells.default = pkgs.mkShell {
 
-        packagesFrom = [ self'.packages.default ];
+        inputsFrom = [ self'.packages.default ];
 
         packages = with pkgs; [
           clang-tools_18

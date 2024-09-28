@@ -2,10 +2,10 @@
   stdenv,
   uhd,
   fmt,
-  clang_18,
   meson,
   ninja,
   pkg-config,
+  boost,
   ...
 }:
 
@@ -23,12 +23,12 @@ stdenv.mkDerivation {
     pkg-config
     meson
     ninja
-    clang_18
   ];
 
   buildInputs = [
-    uhd.dev
+    boost
     fmt
+    uhd
   ];
 
 }
