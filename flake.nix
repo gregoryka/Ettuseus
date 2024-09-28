@@ -22,5 +22,12 @@
         ./formatter.nix
       ];
       systems = [ "x86_64-linux" ];
+
+      perSystem =
+        { pkgs, ... }:
+        {
+
+          packages.default = pkgs.callPackage ./default.nix { };
+        };
     };
 }

@@ -12,18 +12,16 @@ public:
                  int num_of_repeats) -> void;
 
 private:
-  class Block {
-  public:
+  struct Block {
     constexpr static int INFINITE_REPEAT = 0;
     Block(std::filesystem::path &&file, std::uint_fast64_t time_nanoseconds,
           int num_of_repeats);
 
-  private:
     std::filesystem::path file;
     std::uint_fast64_t time_nanoseconds;
     int num_of_repeats;
   };
-  std::list<Block> chain;
-  double sample_rate;
+  std::list<Block> _chain;
+  double _sample_rate;
 };
 } // namespace Ettuseus

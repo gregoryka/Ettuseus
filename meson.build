@@ -7,13 +7,15 @@ project(
 
 lib_include_dir = include_directories('include')
 
-lib_src_files = files('lib/chain.cpp', 'lib/manager.cpp')
+lib_src_files = files('lib/chain.cpp', 'lib/sdr_manager.cpp')
 
-soapy = dependency('SoapySDR')
+uhd = dependency('uhd')
+
+fmt = dependency('fmt')
 
 library(
     'Ettuseus',
     lib_src_files,
     include_directories: lib_include_dir,
-    dependencies: [soapy],
+    dependencies: [uhd, fmt],
 )
