@@ -18,4 +18,5 @@ library(
     lib_src_files,
     include_directories: lib_include_dir,
     dependencies: [uhd, fmt],
+    install: true,
 )

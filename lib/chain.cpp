@@ -1,6 +1,7 @@
 #include <chain.hpp>
 
-#include <fmt/format.h>
+#include <fmt/compile.h>
+#include <fmt/core.h>
 
 #include <complex>
 #include <cstdint>
@@ -8,6 +9,8 @@
 #include <filesystem>
 #include <stdexcept>
 #include <utility>
+
+using namespace fmt::literals;
 
 namespace Ettuseus {
 
@@ -42,7 +45,7 @@ auto Blockchain::add_block(std::filesystem::path &&file,
   if (file_time > block_time) {
     throw std::invalid_argument(
         fmt::format("Block time can't be shorter than sample length; got time "
-                    "{} but file time is {}",
+                    "{} but file time is {}"_cf,
                     block_time, file_time));
   }
 

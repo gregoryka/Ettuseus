@@ -36,3 +36,6 @@
 
 # clangd
 .cache/clangd
+
+# nix build result
+result
