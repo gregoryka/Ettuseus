@@ -3,8 +3,7 @@
 #include <coroutine>
 #include <exception>
 
-template <typename T>
-struct Generator {
+template <typename T> struct Generator {
   // The class name 'Generator' is our choice and it is not required for
   // coroutine magic. Compiler recognizes coroutine by the presence of
   // 'co_yield' keyword. You can use name 'MyGenerator' (or any other name)

@@ -32,8 +32,8 @@ SDR_manager::SDR_manager(const std::string &args)
 
 auto SDR_manager::set_sync_source(const std::string &clock_source,
                                   const std::string &time_source) -> void {
-  auto sync_args = uhd::device_addr_t(
-      fmt::format("clock_source={},time_source={}"_cf, clock_source, time_source));
+  auto sync_args = uhd::device_addr_t(fmt::format(
+      "clock_source={},time_source={}"_cf, clock_source, time_source));
   try {
     this->_dev->set_sync_source(sync_args);
     this->_sync_configured = true;
