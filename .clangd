@@ -1,0 +1,6 @@
+CompileFlags:
+  CompilationDatabase: .
+  Add: -DFMT_USE_NONTYPE_TEMPLATE_ARGS=1
+Diagnostics:
+  UnusedIncludes: Strict
+  MissingIncludes: Strict

@@ -2,12 +2,14 @@
 
 #include <fmt/compile.h>
 #include <fmt/core.h>
+#include <fmt/format.h>
 #include <fmt/ranges.h>
 
 #include <uhd/exception.hpp>
 #include <uhd/types/device_addr.hpp>
 #include <uhd/usrp/multi_usrp.hpp>
 
+#include <stdexcept>
 #include <string>
 
 using namespace fmt::literals;
@@ -29,7 +31,7 @@ SDR_manager::SDR_manager(const std::string &args)
     : _dev(uhd::usrp::multi_usrp::make(args)), _sync_configured(false) {}
 
 auto SDR_manager::set_sync_source(const std::string &clock_source,
-                                  const std::string &time_source) {
+                                  const std::string &time_source) -> void {
   auto sync_args = uhd::device_addr_t(
       fmt::format("clock_source={},time_source={}"_cf, clock_source, time_source));
   try {

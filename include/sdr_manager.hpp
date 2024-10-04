@@ -27,7 +27,7 @@ public:
   */
 
   auto set_sync_source(const std::string &clock_source,
-                       const std::string &time_source);
+                       const std::string &time_source) -> void;
 
   auto xmit();
 
