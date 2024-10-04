@@ -1,7 +1,6 @@
 #include <algorithm>
 #include <chain.hpp>
 
-#include <fmt/compile.h>
 #include <fmt/core.h>
 
 #include <complex>
@@ -13,8 +12,6 @@
 #include <stdexcept>
 #include <utility>
 #include <vector>
-
-using namespace fmt::literals;
 
 namespace Ettuseus {
 
@@ -49,7 +46,7 @@ auto Blockchain::add_block(std::filesystem::path &&file,
   if (file_time > block_time) {
     throw std::invalid_argument(
         fmt::format("Block time can't be shorter than sample length; got time "
-                    "{} but file time is {}"_cf,
+                    "{} but file time is {}",
                     block_time, file_time));
   }
 
@@ -87,7 +84,7 @@ auto Blockchain::Block::bursts_from_block(
                      curr_block_size * complex_float_size);
     if (file_source.fail()) {
       throw std::runtime_error(
-          fmt::format("Error while reading file {}, ifstream fail"_cf,
+          fmt::format("Error while reading file {}, ifstream fail",
                       this->file.string()));
     }
     auto read_bytes = file_source.gcount();
