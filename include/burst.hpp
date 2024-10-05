@@ -7,9 +7,9 @@ namespace Ettuseus {
 
 struct Burst {
   std::vector<std::complex<float>> samples;
-  bool is_sob{};
-  bool is_eob{};
-  double burst_relative_time{};
+  bool is_sob{};  // marks start of burst (file), time tag is placed on this burst
+  bool is_eob{};  // marks end of burst (file), uhd won't transmit until next sob
+  double burst_relative_time{};  // burst start time relative to tx start time
 
   Burst() = default;
 
