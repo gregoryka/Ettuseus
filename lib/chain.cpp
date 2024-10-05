@@ -83,9 +83,8 @@ auto Blockchain::Block::bursts_from_block(
     file_source.read(reinterpret_cast<char *>(burst_samps.data()),
                      curr_block_size * complex_float_size);
     if (file_source.fail()) {
-      throw std::runtime_error(
-          fmt::format("Error while reading file {}, ifstream fail",
-                      this->file.string()));
+      throw std::runtime_error(fmt::format(
+          "Error while reading file {}, ifstream fail", this->file.string()));
     }
     auto read_bytes = file_source.gcount();
     left_file_size -= read_bytes;

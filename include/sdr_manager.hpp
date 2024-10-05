@@ -1,12 +1,21 @@
+#include <chain.hpp>
+
 #include <uhd/usrp/multi_usrp.hpp>
 
+#include <atomic>
+#include <cstddef>
+#include <memory>
+#include <stop_token>
 #include <string>
+#include <thread>
+#include <vector>
 
 namespace Ettuseus {
 
-class SDR_manager {
+class SDR_manager : public std::enable_shared_from_this<SDR_manager> {
 public:
-  SDR_manager(const std::string &args);
+  SDR_manager(const SDR_manager &) = delete;
+  static auto make(const std::string &args) -> std::shared_ptr<SDR_manager>;
 
   /*
   UHD Order of operations - tx direction:
@@ -26,14 +35,34 @@ public:
   errors.
   */
 
+  // TODO - apparently, the "proper" way for RFnoc devices (X3x0) is to use
+  // uhd::rfnoc::graph instead
+
   auto set_sync_source(const std::string &clock_source,
                        const std::string &time_source) -> void;
 
-  auto xmit();
+  // set subdevice - not implemented for simplicity
+
+  auto setup_for_xmit(std::vector<std::size_t> &&channels, double samp_rate,
+                      double center_freq, double gain) -> void;
+
+  auto xmit_chain(const Blockchain &chain) -> void;
+
+  auto set_channels(std::vector<std::size_t> &&channels) -> void;
 
 private:
   uhd::usrp::multi_usrp::sptr _dev;
   bool _sync_configured;
+  std::vector<std::size_t> channels;
+  std::atomic_flag _xmit_in_progress = ATOMIC_FLAG_INIT;
+
+  auto xmit_chain_inner(const std::stop_token &stoken,
+                        const Blockchain &chain) -> void;
+
+  std::jthread xmit_thread;
+
+  auto ensure_xmit_not_in_progress() -> void;
+  SDR_manager(const std::string &args);
 };
 
 } // namespace Ettuseus
