@@ -48,6 +48,10 @@ public:
 
   auto start_xmit_chain_thread(const Blockchain &chain) -> void;
 
+  auto stop_xmit() -> void;
+
+  auto is_currently_xmitting() -> bool;
+
 private:
   uhd::usrp::multi_usrp::sptr _device;
   bool _is_sync_source_set;

@@ -169,4 +169,14 @@ auto SDR_manager::_ensure_xmit_not_in_progress() -> void {
   }
 }
 
+auto SDR_manager::stop_xmit() -> void {
+  if (this->_xmit_in_progress.test(std::memory_order::relaxed)) {
+    this->_xmit_thread.request_stop();
+  }
+}
+
+auto SDR_manager::is_currently_xmitting() -> bool {
+  return this->_xmit_in_progress.test(std::memory_order::relaxed);
+}
+
 }
