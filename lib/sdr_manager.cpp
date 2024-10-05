@@ -34,8 +34,8 @@ auto format_as(
 
 namespace Ettuseus {
 
-auto make(const std::string &args) -> std::shared_ptr<SDR_manager> {
-  return std::make_shared<SDR_manager>(args);
+auto SDR_manager::make(const std::string &args) -> std::shared_ptr<SDR_manager> {
+  return std::shared_ptr<SDR_manager>(new SDR_manager(args));
 }
 
 SDR_manager::SDR_manager(const std::string &args)
@@ -174,4 +174,6 @@ auto SDR_manager::set_channels(std::vector<std::size_t> &&channels) -> void {
     }
   }
   this->channels = std::move(channels);
+}
+
 }
