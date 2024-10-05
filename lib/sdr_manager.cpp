@@ -35,7 +35,8 @@ auto format_as(
 
 namespace Ettuseus {
 
-auto SDR_manager::make(const std::string &args) -> std::shared_ptr<SDR_manager> {
+auto SDR_manager::make(const std::string &args)
+    -> std::shared_ptr<SDR_manager> {
   return std::shared_ptr<SDR_manager>(new SDR_manager(args));
 }
 
@@ -108,7 +109,7 @@ auto SDR_manager::start_xmit_chain_thread(const Blockchain &chain) -> void {
 }
 
 auto SDR_manager::_xmit_chain(const std::stop_token &stoken,
-                                   const Blockchain &chain) -> void {
+                              const Blockchain &chain) -> void {
   this->_xmit_in_progress.test_and_set();
   uhd::stream_args_t stream_args("fc32", "sc16");
   stream_args.channels = this->_channels;
@@ -143,7 +144,8 @@ auto SDR_manager::_xmit_chain(const std::stop_token &stoken,
         metadata.start_of_burst = false;
         metadata.has_time_spec = false;
 
-        uhd_buffs = {this->_channels.size(), &curr_burst.front() + num_tx_samps};
+        uhd_buffs = {this->_channels.size(),
+                     &curr_burst.front() + num_tx_samps};
       }
 
       num_acc_samps += num_tx_samps;
@@ -179,4 +181,4 @@ auto SDR_manager::is_currently_xmitting() -> bool {
   return this->_xmit_in_progress.test(std::memory_order::relaxed);
 }
 
-}
+} // namespace Ettuseus

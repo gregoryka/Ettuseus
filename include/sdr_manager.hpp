@@ -59,7 +59,7 @@ private:
   std::atomic_flag _xmit_in_progress = ATOMIC_FLAG_INIT;
 
   auto _xmit_chain(const std::stop_token &stoken,
-                        const Blockchain &chain) -> void;
+                   const Blockchain &chain) -> void;
 
   std::jthread _xmit_thread;
 
