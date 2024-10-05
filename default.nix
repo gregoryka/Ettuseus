@@ -6,6 +6,7 @@
   ninja,
   pkg-config,
   boost,
+  python312Packages,
   ...
 }:
 
@@ -28,6 +29,7 @@ stdenv.mkDerivation {
   buildInputs = [
     boost
     fmt
+    python312Packages.pybind11
     uhd
   ];
 
