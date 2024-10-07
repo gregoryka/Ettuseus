@@ -46,22 +46,24 @@ public:
   auto setup_for_xmit(std::vector<std::size_t> &&channels, double samp_rate,
                       double center_freq, double gain) -> void;
 
-  auto xmit_chain(const Blockchain &chain) -> void;
+  auto start_xmit_chain_thread(const Blockchain &chain) -> void;
 
-  auto set_channels(std::vector<std::size_t> &&channels) -> void;
+  auto stop_xmit() -> void;
+
+  auto is_currently_xmitting() -> bool;
 
 private:
-  uhd::usrp::multi_usrp::sptr _dev;
-  bool _sync_configured;
-  std::vector<std::size_t> channels;
+  uhd::usrp::multi_usrp::sptr _device;
+  bool _is_sync_source_set;
+  std::vector<std::size_t> _channels;
   std::atomic_flag _xmit_in_progress = ATOMIC_FLAG_INIT;
 
-  auto xmit_chain_inner(const std::stop_token &stoken,
-                        const Blockchain &chain) -> void;
+  auto _xmit_chain(const std::stop_token &stoken,
+                   const Blockchain &chain) -> void;
 
-  std::jthread xmit_thread;
+  std::jthread _xmit_thread;
 
-  auto ensure_xmit_not_in_progress() -> void;
+  auto _ensure_xmit_not_in_progress() -> void;
   SDR_manager(const std::string &args);
 };
 
