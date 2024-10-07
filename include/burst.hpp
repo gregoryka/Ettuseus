@@ -1,4 +1,4 @@
-
+#pragma once
 #include <complex>
 #include <utility>
 #include <vector>

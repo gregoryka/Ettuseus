@@ -1,3 +1,4 @@
+#pragma once
 #include <burst.hpp>
 #include <generator.hpp>
 

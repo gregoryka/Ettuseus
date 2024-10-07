@@ -1,3 +1,4 @@
+#pragma once
 #include <chain.hpp>
 
 #include <uhd/usrp/multi_usrp.hpp>
